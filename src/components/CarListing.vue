@@ -1,18 +1,32 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { Car } from '@/models/Car.js';
+import { carsService } from '@/services/CarsService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
 
-defineProps({
+const props = defineProps({
   carProp: { type: Car, required: true },
   coolGuy: { type: String }
 })
 
 const account = computed(() => AppState.account)
 
-function deleteCar() {
-  console.log('deleting car');
+async function deleteCar() {
+  const confirmed = await Pop.confirm(`Are you sure you want to unlist your ${props.carProp.make} ${props.carProp.model}?`)
 
+  if (!confirmed) {
+    return
+  }
+
+  try {
+    await carsService.deleteCar(props.carProp.id)
+  }
+  catch (error) {
+    Pop.error(error);
+    logger.error('COULD NOT DELETE CAR 🙅‍♂️', error)
+  }
 }
 </script>
 
