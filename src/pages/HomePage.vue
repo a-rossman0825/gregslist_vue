@@ -14,10 +14,14 @@
             <span>Vue</span>
           </h2>
           <div class="display-5 d-flex gap-3">
-            <span>Cars</span>
+            <RouterLink :to="{ name: 'Car Listings' }">
+              <span>Cars</span>
+            </RouterLink>
             <span>|</span>
+            <!-- NOTE this should link to you houses page -->
             <span>Houses</span>
             <span>|</span>
+            <!-- NOTE this should link to you jobs page -->
             <span>Jobs</span>
           </div>
         </div>
@@ -30,5 +34,14 @@
 h2 {
   width: 40%;
   border-bottom: solid thick black;
+}
+
+a {
+  text-decoration: none;
+  color: var(--bs-text);
+}
+
+a:hover {
+  text-decoration: underline;
 }
 </style>
