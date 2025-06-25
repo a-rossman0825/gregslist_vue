@@ -14,4 +14,6 @@ export class Car {
     this.updatedAt = new Date(data.updatedAt)
     this.creator = data.creator
   }
+
+  
 }
