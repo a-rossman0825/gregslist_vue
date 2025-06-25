@@ -1,8 +1,11 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { carsService } from '@/services/CarsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
+
+const cars = computed(() => AppState.cars)
 
 onMounted(() => {
   getCars()
@@ -20,13 +23,20 @@ async function getCars() {
 
 
 <template>
-  <div class="container">
+  <section class="container">
     <div class="row">
       <div class="col-12">
         <h1 class="display-3 text-center">Cars <span class="mdi mdi-car"></span></h1>
       </div>
     </div>
-  </div>
+  </section>
+  <section class="container">
+    <div class="row">
+      <div class="col-12">
+        {{ cars }}
+      </div>
+    </div>
+  </section>
 </template>
 
 
