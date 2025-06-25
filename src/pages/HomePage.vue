@@ -1,13 +1,34 @@
-<script setup >
-import Example from '@/components/Example.vue';
+<script setup>
 
 
 </script>
 
 <template>
-  <Example />
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex flex-column align-items-center">
+          <span class="mdi mdi-home display-1"></span>
+          <h1 class="display-1">Gregslist</h1>
+          <h2 class="display-2 text-center">
+            <span>Vue</span>
+          </h2>
+          <div class="display-5 d-flex gap-3">
+            <span>Cars</span>
+            <span>|</span>
+            <span>Houses</span>
+            <span>|</span>
+            <span>Jobs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
-
+h2 {
+  width: 40%;
+  border-bottom: solid thick black;
+}
 </style>
