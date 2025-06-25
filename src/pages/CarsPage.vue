@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import CarFormModal from '@/components/CarFormModal.vue';
 import CarListing from '@/components/CarListing.vue';
 import { carsService } from '@/services/CarsService.js';
 import { logger } from '@/utils/Logger.js';
@@ -27,7 +28,12 @@ async function getCars() {
   <section class="container">
     <div class="row">
       <div class="col-12">
-        <h1 class="display-3 text-center">Cars <span class="mdi mdi-car"></span></h1>
+        <div class="d-flex justify-content-center align-items-center">
+          <h1 class="display-3">Cars <span class="mdi mdi-car"></span></h1>
+          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#carFormModal">
+            List Car <span class="mdi mdi-car-key"></span>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -38,6 +44,7 @@ async function getCars() {
       </div>
     </div>
   </section>
+  <CarFormModal />
 </template>
 
 
