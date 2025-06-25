@@ -52,7 +52,6 @@ async function deleteCar() {
         </time>
         <div>
           <span>{{ carProp.creator.name }}</span>
-          <!-- TODO show how to replace broken image link -->
           <img :src="carProp.creator.picture" :alt="carProp.creator.name" class="ms-2 creator-img">
         </div>
       </div>
