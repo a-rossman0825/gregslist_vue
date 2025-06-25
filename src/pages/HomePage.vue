@@ -18,10 +18,10 @@
               <span>Cars</span>
             </RouterLink>
             <span>|</span>
-            <!-- NOTE this should link to you houses page -->
+            <!-- NOTE this should link to your houses page -->
             <span>Houses</span>
             <span>|</span>
-            <!-- NOTE this should link to you jobs page -->
+            <!-- NOTE this should link to your jobs page -->
             <span>Jobs</span>
           </div>
         </div>

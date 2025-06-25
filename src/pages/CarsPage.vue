@@ -8,7 +8,7 @@ import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 
 const cars = computed(() => AppState.cars)
-const account = computed(() => AppState.account)
+const account = computed(() => AppState.account) // who is logged in
 
 onMounted(() => {
   getCars()
@@ -31,6 +31,7 @@ async function getCars() {
       <div class="col-12">
         <div class="d-flex justify-content-center align-items-center">
           <h1 class="display-3">Cars <span class="mdi mdi-car"></span></h1>
+          <!-- NOTE only show this button if there is an account object in the appstate (someone is logged in) -->
           <button v-if="account" type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
             data-bs-target="#carFormModal">
             List Car <span class="mdi mdi-car-key"></span>

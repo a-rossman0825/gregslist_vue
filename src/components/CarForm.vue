@@ -8,8 +8,9 @@ import { ref } from 'vue';
 
 async function submitCar() {
   try {
+    // NOTE make sure you send down the VALUE stored inside of the ref object
     await carsService.createCar(editableCarData.value)
-    // NOTE clear form
+    // NOTE clears form
     editableCarData.value = {
       make: '',
       model: '',
@@ -80,7 +81,7 @@ const engineTypes = [
     </div>
     <div class="form-floating mb-3">
       <input v-model="editableCarData.year" type="number" class="form-control" id="car-year" placeholder="Car Year..."
-        min="1896" required :max="new Date().getFullYear() + 1">
+        min="1896" :max="new Date().getFullYear() + 1" required>
       <label for="car-year">Car Year</label>
     </div>
     <div class="form-floating mb-3">

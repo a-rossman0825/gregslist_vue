@@ -3,6 +3,7 @@ import { api } from "./AxiosService.js"
 import { Car } from "@/models/Car.js"
 import { AppState } from "@/AppState.js"
 
+// REVIEW our service here is essentially identical to the service from async/await gregslist
 class CarsService {
   async deleteCar(carId) {
     const response = await api.delete(`api/cars/${carId}`)
