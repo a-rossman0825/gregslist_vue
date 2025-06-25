@@ -2,6 +2,7 @@
 
 export class House {
   constructor(data) {
+    this.id = data._id;
     this.bedrooms = data.bedrooms;
     this.bathrooms = data.bathrooms;
     this.levels = data.levels;
@@ -9,5 +10,11 @@ export class House {
     this.year = data.year;
     this.price = data.price;
     this.description = data.description;
+    this.creatorId = data.creatorId;
+    this.createdAt = new Date(data.createdAt);
+    this.updatedAt = new Date(data.updatedAt);
+    this.creator = data.creator;
   }
+
+  
 }
