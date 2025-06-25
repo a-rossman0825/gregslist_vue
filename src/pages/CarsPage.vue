@@ -8,6 +8,7 @@ import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 
 const cars = computed(() => AppState.cars)
+const account = computed(() => AppState.account)
 
 onMounted(() => {
   getCars()
@@ -30,9 +31,11 @@ async function getCars() {
       <div class="col-12">
         <div class="d-flex justify-content-center align-items-center">
           <h1 class="display-3">Cars <span class="mdi mdi-car"></span></h1>
-          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#carFormModal">
+          <button v-if="account" type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+            data-bs-target="#carFormModal">
             List Car <span class="mdi mdi-car-key"></span>
           </button>
+          <small v-else>Log in so you can sell that car</small>
         </div>
       </div>
     </div>
