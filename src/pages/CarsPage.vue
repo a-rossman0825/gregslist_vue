@@ -33,7 +33,7 @@ async function getCars() {
   </section>
   <section class="container">
     <div class="row">
-      <div v-for="car in cars" :key="car.id" class="col-md-4">
+      <div v-for="car in cars" :key="car.id" class="col-md-4 mb-3">
         <CarListing :carProp="car" :coolGuy="'mick'" />
       </div>
     </div>
