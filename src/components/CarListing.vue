@@ -1,10 +1,19 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { Car } from '@/models/Car.js';
+import { computed } from 'vue';
 
 defineProps({
   carProp: { type: Car, required: true },
   coolGuy: { type: String }
 })
+
+const account = computed(() => AppState.account)
+
+function deleteCar() {
+  console.log('deleting car');
+
+}
 </script>
 
 
@@ -14,7 +23,13 @@ defineProps({
       :alt="`A picture of ${carProp.creator.name}'s ${carProp.year} ${carProp.make} ${carProp.model}`"
       class="img-fluid car-img">
     <div class="p-3 bg-light">
-      <p class="fs-3 fw-bold">{{ carProp.year }} {{ carProp.make }} {{ carProp.model }}</p>
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <p class="fs-3 fw-bold mb-0">{{ carProp.year }} {{ carProp.make }} {{ carProp.model }}</p>
+        <button @click="deleteCar()" v-if="account?.id == carProp.creatorId" class="btn btn-outline-danger"
+          title="Delete car" type="button">
+          <span class="mdi mdi-delete"></span>
+        </button>
+      </div>
       <p class="fs-5">{{ '$' + carProp.price.toLocaleString() }}</p>
       <p>{{ carProp.description }}</p>
       <div class="d-flex justify-content-between align-items-center">
@@ -51,5 +66,14 @@ defineProps({
   border-width: thick;
   border-color: v-bind('carProp.color');
   overflow-y: hidden;
+}
+
+.btn-outline-danger {
+  opacity: 0;
+  transition: all 300ms ease;
+}
+
+.car-border:hover .btn-outline-danger {
+  opacity: 1;
 }
 </style>
