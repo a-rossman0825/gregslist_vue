@@ -13,7 +13,14 @@ class HousesService {
     const houses = res.data.map(pojo => new House(pojo));
     AppState.houses = houses;
   }
-
+  
+  async unlistHouse(houseId) {
+  const res = await api.delete(`api/houses/${houseId}`);
+  logger.log(`🏠🗑️ Deleted House`, res.data);
+  const houses = AppState.houses;
+  const index = houses.findIndex((house) => house.id == houseId);
+  houses.splice(index, 1);
+}
 
 }
 

@@ -1,12 +1,35 @@
 <script setup>
 
+import { AppState } from '@/AppState.js';
 import { House } from '@/models/House.js';
-
-
-
-defineProps({
+import { housesService } from '@/services/HousesService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
+import { computed } from 'vue';
+const props = defineProps({
   houseProp: { type: House, required: true }
 });
+
+const account = computed(() => AppState.account);
+
+async function deleteHouse() {
+  const confirmed = await Pop.confirm(`Are you sure you want to unlist this house?`, 'It will be permanently deleted.', 'yeah delete!', 'wait no, i live there don\'t delete that!');
+
+  if (!confirmed) {
+    return
+  }
+
+  try {
+    await housesService.unlistHouse(props.houseProp.id);
+  }
+  catch (error){
+    Pop.error(error);
+    logger.error('🏠🗑️Could not delete house!', error)
+  }
+
+
+}
+
 
 </script>
 
@@ -21,7 +44,9 @@ defineProps({
           <p class="fs-5 fw-bold mb-0">
             {{houseProp.bedrooms}}bd/{{ houseProp.bathrooms}}ba {{ houseProp.levels }} Story House
           </p>
-          <i class="mdi mdi-delete-outline fs-4 text-danger"></i>
+          <button @click="deleteHouse()" v-if="account?.id == houseProp.creatorId" class="btn btn-outline-danger" title="Delete house" type="button">
+            <i class="mdi mdi-delete-outline fs-4 text-danger"></i>
+          </button>
         </div>
         <p>{{ houseProp.year }} <i class="mdi mdi-clock-outline"></i></p>
         <p>{{ houseProp.description }}</p>
