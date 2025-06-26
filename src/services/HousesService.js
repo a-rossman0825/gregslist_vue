@@ -15,13 +15,19 @@ class HousesService {
   }
   
   async unlistHouse(houseId) {
-  const res = await api.delete(`api/houses/${houseId}`);
-  logger.log(`🏠🗑️ Deleted House`, res.data);
-  const houses = AppState.houses;
-  const index = houses.findIndex((house) => house.id == houseId);
-  houses.splice(index, 1);
-}
-
+    const res = await api.delete(`api/houses/${houseId}`);
+    logger.log(`🏠🗑️ Deleted House`, res.data);
+    const houses = AppState.houses;
+    const index = houses.findIndex((house) => house.id == houseId);
+    houses.splice(index, 1);
+  }
+  
+  async createHouse(houseData) {
+    const res = await api.post(`api/houses`, houseData);
+    logger.log('🏠🦮Created House!', res.data);
+    const house = new House(res.data);
+    AppState.houses.push(house);
+  }
 }
 
 export const housesService = new HousesService();
